@@ -34,7 +34,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: "ghcr.io/Princekumar1291/github-action-java:latest"
+        tags: "ghcr.io/princekumar1291/github-action-java:latest"
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
