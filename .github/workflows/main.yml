@@ -40,3 +40,6 @@ jobs:
 
     - name: Output image URL
       run: echo "Image pushed to ghcr.io/${{ github.repository }}:latest"
+
+    - name: printing the data
+      run : ehco {{github}}
