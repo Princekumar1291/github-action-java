@@ -34,7 +34,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        run: echo {{github}}
         tags: ghcr.io/${{ github.repository }}:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
