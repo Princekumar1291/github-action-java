@@ -34,11 +34,10 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        # tags: ghcr.io/${{ github.repository }}:latest
-        # tags: ghcr.io/${{ "github.repository_owner_lowercase" }}:latest
         run: echo {{github}}
-        # cache-from: type=gha
-        # cache-to: type=gha,mode=max
+        tags: ghcr.io/${{ github.repository }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
     - name: Output image URL
       run: echo "Image pushed to ghcr.io/${{ github.repository }}:latest"
