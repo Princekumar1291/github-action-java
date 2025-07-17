@@ -42,9 +42,12 @@ jobs:
         file: ./Dockerfile
         push: true
         platforms: linux/amd64,linux/arm64
-        tags: "ghcr.io/${{github.actor}}/github-action-java:${{github.sha}}"
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        # tags: "ghcr.io/${{github.actor}}/github-action-java:${{github.sha}}"
+        # cache-from: type=gha
+        # cache-to: type=gha,mode=max
+        tags: user/app:latest
+        cache-from: type=registry,ref=user/app:latest
+        cache-to: type=inline
 
     - name: Output image URL
       run: echo "Image pushed to ghcr.io/${{ github.repository }}:latest"
