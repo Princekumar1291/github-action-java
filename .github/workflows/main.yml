@@ -4,7 +4,14 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: [ main ]
+    branches: [ main, prince ]
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'Dockerfile'
+
+  # schedule:
+  #   - cron: '0 0 * * *' 
 
 jobs:
   build:
