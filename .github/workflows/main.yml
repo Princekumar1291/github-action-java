@@ -46,11 +46,5 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
-    - name: Verify Cache
-      run: |
-        echo "Cache downloaded from GitHub:"
-        du -sh /tmp/buildx-cache
-        docker buildx du --verbose
-
     - name: Output image URL
       run: echo "Image pushed to ghcr.io/${{ github.repository }}:latest"
