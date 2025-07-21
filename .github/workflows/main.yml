@@ -15,7 +15,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # Needed to fetch all tags
+        fetch-depth: 0
 
     - name: Set up Git
       run: |
@@ -25,20 +25,22 @@ jobs:
     - name: Get latest tag and bump version
       id: version
       run: |
-        # Get latest tag
         latest_tag=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v0.0.0")
-        
-        # Extract version parts
         version=${latest_tag#v}
         IFS='.' read -r major minor patch <<< "$version"
 
-        # Bump patch version
-        new_version="v$major.$minor.$((patch+1))"
+        patch=$((patch + 1))
+        if [ "$patch" -ge 10 ]; then
+          patch=0
+          minor=$((minor + 1))
+        fi
 
-        echo "Latest tag: $latest_tag"
-        echo "New version: $new_version"
+        if [ "$minor" -ge 10 ]; then
+          minor=0
+          major=$((major + 1))
+        fi
 
-        # Output new tag
+        new_version="v$major.$minor.$patch"
         echo "tag=$new_version" >> $GITHUB_OUTPUT
 
     - name: Create new Git tag
@@ -76,4 +78,3 @@ jobs:
         echo "- latest"
         echo "- ${{ steps.version.outputs.tag }}"
         echo "- ${{ github.sha }}"
- 
