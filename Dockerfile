@@ -27,6 +27,6 @@ HEALTHCHECK \
   CMD curl --fail http://localhost:8080/actuator/health || exit 1 
 
 
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"] 
 
