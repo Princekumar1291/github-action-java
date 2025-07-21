@@ -71,3 +71,21 @@ jobs:
         cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache
         cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache,mode=max
 
+
+    - name: Deploy to EC2 via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}     # typically 'ubuntu'
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          # Clean up any old container
+          sudo docker stop myapp || true
+          sudo docker rm myapp || true
+
+          # Login to GitHub Container Registry (GHCR)
+          echo ${{ secrets.TOKEN_GITHUB }} | sudo docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+          # Pull latest image and run container
+          sudo docker pull ghcr.io/${{ github.actor }}/github-action-java:latest
+          sudo docker run -d --name myapp -p 80:80 ghcr.io/${{ github.actor }}/github-action-java:latest
