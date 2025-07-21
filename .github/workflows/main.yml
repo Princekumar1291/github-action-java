@@ -68,7 +68,6 @@ jobs:
         tags: |
           ghcr.io/${{ github.actor }}/github-action-java:latest
           ghcr.io/${{ github.actor }}/github-action-java:${{ steps.version.outputs.tag }}
-          ghcr.io/${{ github.actor }}/github-action-java:${{ github.sha }}
         cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache
         cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache,mode=max
 
