@@ -13,4 +13,4 @@ A simple Spring Boot application.
 - [ ] Pull and run the Docker image on local run it always with health checks
 
 # github-action-java
- 
+  
