@@ -71,9 +71,3 @@ jobs:
         cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache
         cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/github-action-java:cache,mode=max
 
-    - name: Output image tags
-      run: |
-        echo "Image pushed with tags:"
-        echo "- latest"
-        echo "- ${{ steps.version.outputs.tag }}"
-        echo "- ${{ github.sha }}"
