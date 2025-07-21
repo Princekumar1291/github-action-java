@@ -76,3 +76,4 @@ jobs:
         echo "- latest"
         echo "- ${{ steps.version.outputs.tag }}"
         echo "- ${{ github.sha }}"
+ 
