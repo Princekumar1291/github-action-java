@@ -3,6 +3,8 @@ name: Build & Push Docker Image
 on:
   push:
     branches: [ main, prince ]
+    paths-ignore:
+      - 'terraform/**'
 
 jobs:
   build:
