@@ -11,6 +11,8 @@ public class RequestInfo {
     private Map<String, String> headers;
     private String remoteAddress;
     private String method;
+    private String createdBy;
+
 
     public String getUserAgent() {
         return userAgent;
@@ -74,5 +76,11 @@ public class RequestInfo {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+    public String getName() {
+        return createdBy;
     }
 }

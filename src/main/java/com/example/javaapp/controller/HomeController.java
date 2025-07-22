@@ -18,6 +18,10 @@ public class HomeController {
     @GetMapping("/*")
     public RequestInfo home(HttpServletRequest request) {
         RequestInfo info = new RequestInfo();
+
+        // Set created by
+        info.setCreatedBy("Prince Kumar");
+
         
         // Set basic request information
         info.setPath(request.getRequestURI());
